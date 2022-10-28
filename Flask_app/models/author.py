@@ -9,7 +9,7 @@ class Author:
 
     @classmethod
     def get_all(cls):
-        query = 'SELECT * FROM authors'
+        query = 'SELECT * FROM authors;'
         results = connectToMySQL('books').query_db(query)
         authors = []
         for author in results:
@@ -18,6 +18,6 @@ class Author:
 
     @staticmethod
     def add_author(data:dict):
-        query = 'INSERT INTO authors (name) VALUE(%(name)s)'
+        query = 'INSERT INTO authors (name) VALUE(%(name)s);'
         connectToMySQL('books').query_db(query,data)
         return
