@@ -21,3 +21,12 @@ class Author:
         query = 'INSERT INTO authors (name) VALUE(%(name)s);'
         connectToMySQL('books').query_db(query,data)
         return
+
+    @classmethod
+    def get_favorited(cls, data):
+        query = 'SELECT * FROM authors JOIN favorites ON favorites.author_id = id WHERE favorites.book_id = %(id)s;'
+        results = connectToMySQL('books').query_db(query, data)
+        authors = []
+        for author in results:
+            authors.append(cls(author))
+        return authors
