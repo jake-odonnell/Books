@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authors Page</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body class = "text-center">
+    <div class="container d-flex justify-content-around mt-3">
+        <!-- New Author Form -->
+        <form action="/add-author" class="form col-3 bg-info p-3" method="post">
+            <h1>New Author</h1>
+            <div>
+                <label for="name">Name: </label>
+                <input type="text" name="name" value="Name...">
+            </div>
+            <button type="submit" class="">Create</button>
+        </form>
+        <!-- List of Current Authors -->
+        <div class="card border border-dark shadow p-3 col-3">
+            <h1 class="">All Authors</h1>
+            {% for author in authors %}
+                <a href="/author/{{author.id}}" class="card-link">{{author.name}}</a>
+            {% endfor %}
+        </div>
+    </div>
+    <a href="/add_book">Add Book</a>
+</body>
+</html>
