@@ -28,3 +28,20 @@ class Book:
         for book in results:
             books.append(cls(book))
         return books
+
+    @classmethod
+    def get_from_id(cls, data:dict):
+        query = 'SELECT * from books WHERE id = %(id)s;'
+        result = connectToMySQL('books').query_db(query, data)
+        print(result)
+        book = cls(result[0])
+        return book
+
+    @classmethod
+    def add_book(cls, data:dict):
+        query = 'INSERT INTO books (title, num_of_pages) VALUES (%(title)s, %(num_pages)s);'
+        id = connectToMySQL('books').query_db(query, data)
+        data = {
+            'id': id
+        }
+        return cls.get_from_id(data)

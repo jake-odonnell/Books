@@ -11,29 +11,33 @@
     <div class="container d-flex justify-content-around border p-3">
         <!-- Table for Author Favorites -->
         <div class="card border border-dark shadow p-3 col-3">
-            <h1 class="">Title: Hideaway</h1>
+            <h1 class="">Title: {{book.title}}</h1>
             <h3>Favorited By:</h3>
             {% for author in authors %}
-                <a href="/author/{{author.id}}" class="card-link">{{author.name}}</a>
+                <a href="/author/{{author.id}}" class="card-link m-auto">{{author.name}}</a>
             {% endfor %}
         </div>
 
         <!-- Form for Adding New Favorite -->
-        <form action="/add-favorite" class="form col-5" method="post">
-            <h1>Add New Favorite Book</h1>
+        <form action="/add-favorited" class="form col-5" method="post">
+            <h1>Add Book's Favorite</h1>
             <div class="d-flex justify-content-around mb-3">
-                <label for="book">Book: </label>
-                <select name="book">
+                <label for="author">Author: </label>
+                <select name="author">
                     <option disabled selected>-- Select Book --</option>
-                    {%for book in all_books%}
-                        <option value="{{book.id}}">{{book.title}}</option>
+                    {%for author in all_authors%}
+                        <option value="{{author.id}}">{{author.name}}</option>
                     {% endfor %}
                 </select>
             </div>
-            <button type="submit">Add Book</button>
-            <input type="hidden" name="author" value="{{author_id}}">
+            <button type="submit">Add Author</button>
+            <input type="hidden" name="book" value="{{book.id}}">
         </form>
     </div>
-    <a href="/authors">Home</a>
+    <div class="">
+            <a href="/authors" class="mr-5">Home</a>
+            <a href="/books">Books</a>
+    </div>
+
 </body>
 </html>
